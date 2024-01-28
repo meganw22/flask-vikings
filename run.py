@@ -15,6 +15,10 @@ def about():
 def contact():
     return render_template("contact.html")            #seeks the about.html
 
+@app.route("/careers")
+def careers():
+    return render_template("careers.html")
+
 if __name__ == "__main__":                          #__main__ is the default module in python, is the first module to be run so if its not imported 
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),       #use to os module to get the IP variable if it exists but set a default if it is not found
