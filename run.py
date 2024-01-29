@@ -9,15 +9,15 @@ def index():
 
 @app.route("/about")            
 def about():
-    return render_template("about.html")            #seeks the about.html
+    return render_template("about.html", page_title="About")            #seeks the about.html
 
 @app.route("/contact")            
 def contact():
-    return render_template("contact.html")            #seeks the about.html
+    return render_template("contact.html", page_title="Contact")            #seeks the about.html
 
 @app.route("/careers")
 def careers():
-    return render_template("careers.html")
+    return render_template("careers.html", page_title="Careers")
 
 if __name__ == "__main__":                          #__main__ is the default module in python, is the first module to be run so if its not imported 
     app.run(
