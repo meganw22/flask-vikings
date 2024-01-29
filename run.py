@@ -1,4 +1,5 @@
 import os                   #from the standard python library
+import json
 from flask import Flask, render_template
 
 app = Flask(__name__)       #single built in python variable
@@ -7,9 +8,12 @@ app = Flask(__name__)       #single built in python variable
 def index():
     return render_template("index.html")            #seeks the index.html
 
-@app.route("/about")            
+@app.route("/about")
 def about():
-    return render_template("about.html", page_title="About")            #seeks the about.html
+    data = []        
+    with open("data/company.json", "r") as json_data:
+        data = json.load(json_data)
+    return render_template("about.html", page_title="About", company=data)            #seeks the about.html
 
 @app.route("/contact")            
 def contact():
