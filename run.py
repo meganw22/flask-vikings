@@ -1,8 +1,11 @@
 import os                   #from the standard python library
 import json
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
+if os.path.exists("env.py"):
+    import env
 
 app = Flask(__name__)       #single built in python variable
+app.secret_key = os.environ.get("SECRET_KEY")
 
 @app.route("/")             #route decorator, also called a pie notion, a decorator is a way of wrapping funtions
 def index():
@@ -28,9 +31,9 @@ def about_member(member_name):
 @app.route("/contact", methods=["GET", "POST"])            
 def contact():
     if request.method == "POST":
-        print(request.form.get("name"))
-        print(request.form["email"])
-    return render_template("contact.html", page_title="Contact")            #seeks the about.html
+        flash("Thanks {}, we have received your message!".format(
+            request.form.get("name")))
+    return render_template("contact.html", page_title="Contact")           
 
 @app.route("/careers")
 def careers():
